@@ -1,0 +1,40 @@
+/* レイアウトとデザインに関するCSS */
+body {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+}
+
+.todo-form {
+        margin-bottom: 20px;
+}
+
+.todo-status {
+        margin-bottom: 15px;
+}
+
+li {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+}
+
+button {
+        margin-right: 6px;
+}
+
+.todo-status {
+        margin-top: 10px;
+}
+
+.modal {
+        position: fixed;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.3);
+}
