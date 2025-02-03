@@ -139,11 +139,18 @@ class TodoList {
 
                 // 入力値の検証
                 const newText = editInput.value.trim();
-                if (!newText) return;
+                if (!newText) {
+                        alert("タスクの内容を入力してください。");
+                        return;
+                }
 
                 // データの更新
                 const todo = this.todos.find((t) => t.id === id);
-                if (!todo) return;
+                if (!todo) {
+                        alert("タスクの更新に失敗しました。");
+                        return;
+                }
+
                 todo.update(newText);
 
                 // 編集モードの終了
