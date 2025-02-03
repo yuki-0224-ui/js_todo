@@ -90,12 +90,16 @@ class TodoList {
 
         addTodo() {
                 const text = this.todoInput.value.trim();
-                if (text) {
-                        const todo = new Todo(text);
-                        this.todos.push(todo);
-                        this.todoInput.value = "";
-                        this.updateTodoList();
+
+                if (!text) {
+                        alert("タスクを入力してください。");
+                        return;
                 }
+
+                const todo = new Todo(text);
+                this.todos.push(todo);
+                this.todoInput.value = "";
+                this.updateTodoList();
         }
 
         toggleComplete(id) {
