@@ -124,6 +124,7 @@ class TodoList {
                 todoText.classList.add("editing");
                 editInput.classList.add("active");
                 editButton.textContent = "保存";
+                editButton.dataset.mode = "editing";
 
                 // 編集の準備
                 editInput.value = todoText.textContent;
@@ -160,6 +161,7 @@ class TodoList {
                 todoText.classList.remove("editing");
                 editInput.classList.remove("active");
                 editButton.textContent = "編集";
+                editButton.dataset.mode = "viewing";
 
                 this.updateTodoList();
         }
@@ -232,11 +234,15 @@ class TodoList {
                 // 編集ボタン
                 const editButton = document.createElement("button");
                 editButton.textContent = "編集";
+                // 初期状態は表示モード
+                editButton.dataset.mode = "viewing";
                 editButton.addEventListener("click", () => {
-                        if (editButton.textContent === "編集") {
+                        if (editButton.dataset.mode === "editing") {
+                                this.saveEdit(todo.id);
+                        } else if (editButton.dataset.mode === "viewing") {
                                 this.startEdit(todo.id);
                         } else {
-                                this.saveEdit(todo.id);
+                                alert(`予期せぬ編集モードです: ${editButton.dataset.mode}`);
                         }
                 });
 
