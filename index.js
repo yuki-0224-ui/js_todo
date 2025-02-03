@@ -6,7 +6,6 @@ class Todo {
                 this.completed = false;
                 this.deleted = false;
         }
-
         toggle() {
                 this.completed = !this.completed;
         }
@@ -183,16 +182,25 @@ class TodoList {
         updateTodoList() {
                 const total = this.todos.length;
                 const completed = this.todos.filter((t) => t.completed).length;
+
                 this.todoStats.textContent =
                         `全タスク：${total} 完了：${completed} 未完了：${
                                 total - completed
                         }`;
 
                 this.todoList.innerHTML = "";
+
+                // DocumentFragmentを作成してメモリ上でDOMを構築
+                const fragment = document.createDocumentFragment();
+
+                // 各Todoアイテムをフラグメントに追加
                 this.todos.forEach((todo) => {
                         const li = this.createTodoElement(todo);
-                        this.todoList.appendChild(li);
+                        fragment.appendChild(li);
                 });
+
+                // 完成したフラグメントをDOMに一括追加（レンダリングは1回のみ）
+                this.todoList.appendChild(fragment);
         }
 
         // 個々のTodo要素を作成
